@@ -1,7 +1,7 @@
 import { EyeNoneIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
-import { cn } from "@shared/lib/utils";
+import { cn } from "@shared/lib";
 
 import { Button } from "./button";
 import type { InputProps } from "./input";

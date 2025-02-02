@@ -24,5 +24,4 @@ dist-ssr
 *.sw?
 
 .env
-tsconfig.app.tsbuildinfop
-cypress/screenshots
+tsconfig.app.tsbuildinfo

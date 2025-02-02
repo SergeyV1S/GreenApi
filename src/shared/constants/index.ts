@@ -1,3 +1,3 @@
-export * from "./PATHS.constant";
+export * from "./paths";
 export * from "./queryClient";
-export * from "./localStorage.constant";
+export * from "./localStorage";

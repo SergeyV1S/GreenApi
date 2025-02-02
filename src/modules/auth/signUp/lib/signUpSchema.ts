@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { formatePhone } from "@shared/lib/formatePhone";
+import { formatePhone } from "@shared/lib";
 
 export const signUpSchema = z.object({
   firstName: z.string(),

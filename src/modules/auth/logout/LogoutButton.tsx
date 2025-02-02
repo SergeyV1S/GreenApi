@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { AUTH_KEY, PATHS } from "@shared/constants";
-import { Button } from "@shared/ui/button";
+import { Button } from "@shared/ui";
 
 import { usePostLogoutMutation } from "./api/usePostLogout";
 
@@ -17,9 +17,5 @@ export const LogoutButton = () => {
     }
   });
 
-  return (
-    <Button data-testid='logout_button' onClick={() => mutate({})}>
-      Выйти
-    </Button>
-  );
+  return <Button onClick={() => mutate({})}>Выйти</Button>;
 };

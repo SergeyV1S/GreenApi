@@ -2,7 +2,7 @@ import * as React from "react";
 import { DashIcon } from "@radix-ui/react-icons";
 import { OTPInput, OTPInputContext } from "input-otp";
 
-import { cn } from "@shared/lib/utils";
+import { cn } from "@shared/lib";
 
 const InputOTP = ({
   className,

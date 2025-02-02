@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import type { z } from "zod";
 
 import { AUTH_KEY, PATHS } from "@shared/constants";
-import { toast } from "@shared/lib/hooks/use-toast";
+import { toast } from "@shared/hooks/use-toast";
 
 import { usePostLoginMutation } from "../api/usePostLoginMutation";
 import type { signInMailSchema } from "../lib/signInMailSchema";

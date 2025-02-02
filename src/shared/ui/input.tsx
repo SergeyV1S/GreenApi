@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import { cn } from "@shared/lib/utils";
+import { cn } from "@shared/lib";
 
 export type InputProps<Component extends React.ElementType = "input"> = {
   component?: Component;

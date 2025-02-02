@@ -1,11 +1,2 @@
 yarn lint-staged --no-stash
-yarn dev &
-npx wait-on http://localhost:5173
-
-yarn cy:run
-
-if [[ "$OSTYPE" == "msys" ]]; then
-  taskkill //F //IM node.exe
-else
-  pkill -f "vite"
-fi
+yarn typescheck

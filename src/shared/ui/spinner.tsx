@@ -1,4 +1,4 @@
-import { LoadingIcon } from "@shared/icons/LoginIcon";
+import { LoadingIcon } from "@shared/icons/LoadingIcon";
 
 interface ISpinnerProps {
   children?: React.ReactNode;

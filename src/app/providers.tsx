@@ -2,7 +2,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
 
 import { queryClient } from "@shared/constants/queryClient";
-import { Toaster } from "@shared/ui/toaster";
+import { Toaster } from "@shared/ui";
 
 import { routes } from "./router";
 

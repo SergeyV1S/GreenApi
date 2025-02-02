@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 import type { z } from "zod";
 
 import { AUTH_KEY, PATHS } from "@shared/constants";
-import { formatePhone } from "@shared/lib/formatePhone";
-import { toast } from "@shared/lib/hooks/use-toast";
+import { toast } from "@shared/hooks/use-toast";
+import { formatePhone } from "@shared/lib";
 
 import { usePostRegisterMutation } from "../api/usePostCreateUser";
 import type { signUpSchema } from "../lib/signUpSchema";

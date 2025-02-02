@@ -2,7 +2,7 @@ import * as ToastPrimitives from "@radix-ui/react-toast";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { type VariantProps, cva } from "class-variance-authority";
 
-import { cn } from "@shared/lib/utils";
+import { cn } from "@shared/lib";
 
 const ToastProvider = ToastPrimitives.Provider;
 

@@ -3,12 +3,11 @@ import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
-import { Spinner } from "@shared/ui/spinner";
+import { Spinner } from "@shared/ui";
 
 import { PrivateRoute } from "./PrivateRoute";
 
 const RootScreen = lazy(() => import("./RootPage"));
-const YandexCallbackScreen = lazy(() => import("@modules/auth/oAuth/Yandex"));
 const SignInScreen = lazy(() => import("@modules/auth/signIn/"));
 const SignUpScreen = lazy(() => import("@modules/auth/signUp"));
 const ProfileScreen = lazy(() => import("@modules/user/profile"));
@@ -40,14 +39,6 @@ export const routes = createBrowserRouter([
     element: (
       <Suspense fallback={<Spinner />}>
         <RootScreen />
-      </Suspense>
-    )
-  },
-  {
-    path: PATHS.OAUTH_YANDEX,
-    element: (
-      <Suspense fallback={<Spinner />}>
-        <YandexCallbackScreen />
       </Suspense>
     )
   },
