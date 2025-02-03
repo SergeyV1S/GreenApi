@@ -1,13 +1,17 @@
-# React Starter
+# WhatsApp Chat with Green API
 
-Этот проект является стартовым шаблоном для разработки приложений на **React**, предоставляя готовую структуру и конфигурацию для быстрого начала работы.
+**[Перейти на веб-приложение](https://whatsapp-chat.igniz.ru/)**
+
+---
 
 ## 🚀 **Основные технологии**
 
 - **React**: Библиотека для создания пользовательских интерфейсов.
+- **React Router Dom**: Библиотека для роутинга в SPA приложениях.
+- **Axios**: HTTP client.
 - **Vite**: Инструмент для сборки и разработки, обеспечивающий быструю компиляцию и запуск приложения.
+- **Vite Plugin PWA**: Инструмент для интеграции PWA в Vite приложение.
 - **TypeScript**: Язык программирования, расширяющий JavaScript статической типизацией.
-- **Cypress**: Фреймворк для сквозного тестирования приложения.
 - **ESLint**: Инструмент для анализа кода с целью выявления проблем в JavaScript/TypeScript коде.
 - **Prettier**: Инструмент для автоматического форматирования кода.
 
@@ -18,10 +22,6 @@
 Перед запуском убедитесь, что у вас настроены следующие переменные окружения (см. `.env.example`):
 
 - `BASE_API_URL`: URL API.
-- `BASE_YANDEX_API_URL`: URL API Яндекса.
-- `YANDEX_REDIRECT_URI`: URI перенаправления для Яндекса.
-- `YANDEX_CLIENT_ID`: Идентификатор клиента Яндекса.
-- `YANDEX_CLIENT_SECRET`: Секрет клиента Яндекса.
 
 ---
 
@@ -34,11 +34,7 @@
 ```bash
 docker build \
   --build-arg BASE_API_URL=your_base_api_url \
-  --build-arg BASE_YANDEX_API_URL=your_yandex_api_url \
-  --build-arg YANDEX_REDIRECT_URI=your_redirect_uri \
-  --build-arg YANDEX_CLIENT_ID=your_client_id \
-  --build-arg YANDEX_CLIENT_SECRET=your_client_secret \
-  -t react-starter .
+  -t image-name .
 ```
 
 **Запуск контейнера:**
@@ -46,40 +42,37 @@ docker build \
 ```bash
 docker run \
   -e BASE_API_URL=your_base_api_url \
-  -e BASE_YANDEX_API_URL=your_yandex_api_url \
-  -e YANDEX_REDIRECT_URI=your_redirect_uri \
-  -e YANDEX_CLIENT_ID=your_client_id \
-  -e YANDEX_CLIENT_SECRET=your_client_secret \
-  -d -p 5173:5173 react-starter
-```
-
-### 📦 **2. Использование Dockerfile.ng**
-
-**Сборка образа:**
-
-```bash
-docker build \
-  --build-arg BASE_API_URL=your_base_api_url \
-  --build-arg BASE_YANDEX_API_URL=your_yandex_api_url \
-  --build-arg YANDEX_REDIRECT_URI=your_redirect_uri \
-  --build-arg YANDEX_CLIENT_ID=your_client_id \
-  --build-arg YANDEX_CLIENT_SECRET=your_client_secret \
-  -t react-starter -f Dockerfile.ng .
-```
-
-**Запуск контейнера:**
-
-```bash
-docker run \
-  -e BASE_API_URL=your_base_api_url \
-  -e BASE_YANDEX_API_URL=your_yandex_api_url \
-  -e YANDEX_REDIRECT_URI=your_redirect_uri \
-  -e YANDEX_CLIENT_ID=your_client_id \
-  -e YANDEX_CLIENT_SECRET=your_client_secret \
-  -d -p 5173:80 react-starter
+  --name container_name
+  -d -p 5173:80 image-name
 ```
 
 После запуска контейнера приложение будет доступно по адресу **[http://localhost:5173](http://localhost:5173)**.
+
+### 📦 **2. Стандартного запуска**
+
+**Склонируйте репозиторий:**
+
+```bash
+git clone https://github.com/SergeyV1S/GreenApi.git .
+```
+
+**Создайте в корневой папке файл .env и добавьте переменную BASE_API_URL**
+
+```bash
+BASE_API_URL=https://1103.api.green-api.com
+```
+
+**Установите зависимости:**
+
+```bash
+yarn install
+```
+
+**Запуск приложения:**
+
+```bash
+yarn dev
+```
 
 > **Важно:** Убедитесь, что вы заменили переменные окружения на актуальные значения для вашего окружения.
 
