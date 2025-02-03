@@ -1,8 +1,20 @@
 import { UserRoundIcon } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
-export const ChatItem = () => (
-  <div className='w-full relative py-5 first:pt-0'>
-    <div className='flex items-center gap-4'>
+import { cn } from "@shared/lib";
+
+interface IChatItemProps {
+  chatId: string;
+}
+
+export const ChatItem = ({ chatId }: IChatItemProps) => (
+  <NavLink
+    to={chatId}
+    className={({ isActive }) =>
+      cn("block w-full relative rounded-lg py-5 px-2 hover:bg-green-50", isActive && "bg-green-100")
+    }
+  >
+    <div className='flex items-center gap-3'>
       <div className='rounded-full bg-slate-200'>
         <UserRoundIcon size={49} className='text-white p-1' />
       </div>
@@ -13,6 +25,6 @@ export const ChatItem = () => (
         </p>
       </div>
     </div>
-    <p className='absolute top-4 right-1 text-xs opacity-70'>19:34</p>
-  </div>
+    <p className='absolute top-4 right-4 text-xs opacity-70'>19:34</p>
+  </NavLink>
 );
