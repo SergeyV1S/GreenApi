@@ -1,8 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: process.env.BASE_API_URL,
-  withCredentials: true
+  baseURL: process.env.BASE_API_URL
 });
 
 api.interceptors.response.use(
