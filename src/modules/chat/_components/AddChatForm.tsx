@@ -4,7 +4,7 @@ import { PatternFormat } from "react-number-format";
 import { useAddChat } from "../model";
 
 export const AddChatForm = () => {
-  const { addChatForm, addChat, isValid } = useAddChat();
+  const { addChatForm, addChat, isValid, isLoading } = useAddChat();
 
   return (
     <div className='bg-white p-10 rounded-2xl h-auto space-y-6'>
@@ -42,7 +42,7 @@ export const AddChatForm = () => {
           disabled={isValid}
           className='w-full mt-10 bg-green-600 hover:bg-green-700 text-white py-2 rounded-md disabled:opacity-60'
         >
-          {/* {isLoading ? "Загрузка..." : "Войти"} */}g
+          {isLoading ? "Загрузка..." : "Войти"}
         </button>
       </form>
     </div>
