@@ -1,2 +1,2 @@
-export * from "./useIsMobile";
-export * from "./IsMobileProvider";
+export * from "./IsMobile";
+export * from "./Modal";

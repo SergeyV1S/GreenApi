@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { getInstanceStatus } from "@shared/api";
-import { LOCAL_STORAGE } from "@shared/constants";
+import { LOCAL_STORAGE, PATHS } from "@shared/constants";
 import type { IInstance } from "@shared/types";
 
 export const useAuth = () => {
@@ -38,7 +38,7 @@ export const useAuth = () => {
         }
         localStorage.setItem(LOCAL_STORAGE.ID_INSTANCE, data.idInstance);
         localStorage.setItem(LOCAL_STORAGE.API_TOKEN_INSTANCE, data.apiTokenInstance);
-        navigate("/");
+        navigate(PATHS.ROOT);
       })
       .catch(() => {
         console.log("Ваш instance неавторизован, вы можете авторизовать его в личном кабинете");
