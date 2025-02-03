@@ -1,5 +1,3 @@
-import TailwindcssAnimate from "tailwindcss-animate";
-
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
@@ -15,11 +13,6 @@ export default {
       lg: "1024px",
       xl: "1280px",
       "2xl": "1440px"
-    },
-    extend: {
-      borderRadius: {},
-      colors: {}
     }
-  },
-  plugins: [TailwindcssAnimate]
+  }
 };
