@@ -8,11 +8,18 @@ export const PrivateRoute = () => {
   const apiTokenInstance = localStorage.getItem(LOCAL_STORAGE.API_TOKEN_INSTANCE);
   const idInstance = localStorage.getItem(LOCAL_STORAGE.ID_INSTANCE);
 
-  if (!apiTokenInstance || !idInstance) {
-    return <Navigate to={PATHS.AUTH} state={{ from: location }} replace />;
+  const isAuthenticated = Boolean(apiTokenInstance && idInstance);
+  const isAuthPage = location.pathname === PATHS.AUTH;
+
+  if (!isAuthenticated) {
+    return isAuthPage ? (
+      <Outlet />
+    ) : (
+      <Navigate to={PATHS.AUTH} state={{ from: location }} replace />
+    );
   }
 
-  if (apiTokenInstance && idInstance && location.pathname === PATHS.AUTH) {
+  if (isAuthenticated && isAuthPage) {
     return <Navigate to='/' replace />;
   }
 
