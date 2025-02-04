@@ -11,6 +11,7 @@ export const useSendMessage = () => {
   const sendMessageMutation = useSendMessageMutation({
     options: {
       onSuccess() {
+        setTextMessage("");
         queryClient.invalidateQueries({ queryKey: ["getChatHistory"] });
       }
     }

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { RouteObject } from "react-router-dom";
 
 import { PATHS } from "@shared/constants";
+import { FormError, Input } from "@shared/ui";
 
 import { useAuth } from "../model";
 
@@ -21,27 +22,21 @@ const AuthPage = () => {
             <div className='flex flex-col gap-6'>
               <label htmlFor='idInstance' className='space-y-2'>
                 idInstance
-                <input
+                <Input
                   type='text'
                   placeholder='Введите значение id инстанса'
-                  className='border border-slate-200 rounded-md px-3 py-1 focus:outline-green-200 text-sm h-9 w-full'
                   {...authForm.register("idInstance")}
                 />
-                <p className='text-xs text-red-600 font-medium'>
-                  {authForm.formState.errors.idInstance?.message}
-                </p>
+                <FormError>{authForm.formState.errors.idInstance?.message}</FormError>
               </label>
               <label htmlFor='apiTokenInstance' className='space-y-2'>
                 apiTokenInstance
-                <input
+                <Input
                   type='text'
                   placeholder='Введите значение токена инстанса'
-                  className='border border-slate-200 rounded-md px-3 py-1 focus:outline-green-200 text-sm h-9 w-full'
                   {...authForm.register("apiTokenInstance")}
                 />
-                <p className='text-xs text-red-600 font-medium'>
-                  {authForm.formState.errors.apiTokenInstance?.message}
-                </p>
+                <FormError>{authForm.formState.errors.apiTokenInstance?.message}</FormError>
               </label>
             </div>
             <button

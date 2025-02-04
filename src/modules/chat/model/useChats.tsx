@@ -9,7 +9,7 @@ export const useChats = (
 ) => {
   const [chatsList, setChatsList] = useState<IContactInfo[]>([]);
 
-  const { mutateAsync, isPending } = usePostGetContactInfoMutation({
+  const { mutateAsync, isSuccess } = usePostGetContactInfoMutation({
     options: {
       onSuccess(data) {
         setChatsList((prev) => [...prev, data.data]);
@@ -40,6 +40,6 @@ export const useChats = (
     chatsList,
     mutateAsync,
     setChatsList,
-    isPending
+    isSuccess
   };
 };

@@ -7,7 +7,7 @@ import { useGetInstanceData } from "@shared/hooks";
 import { cn } from "@shared/lib";
 import { formateChatId } from "@shared/lib";
 import type { ITextMessage } from "@shared/types";
-import { Modal } from "@shared/ui";
+import { Input, Modal } from "@shared/ui";
 
 import { useChats } from "../model";
 import { AddChatForm } from "./AddChatForm";
@@ -20,7 +20,7 @@ interface IChatsProps {
 export const Chats = ({ lastIncomingMessages, lastOutgoingMessages }: IChatsProps) => {
   const { apiTokenInstance, idInstance } = useGetInstanceData();
 
-  const { chats, lastMessageInChats, mutateAsync, setChatsList, chatsList, isPending } = useChats(
+  const { chats, lastMessageInChats, mutateAsync, setChatsList, chatsList, isSuccess } = useChats(
     lastIncomingMessages,
     lastOutgoingMessages
   );
@@ -59,12 +59,8 @@ export const Chats = ({ lastIncomingMessages, lastOutgoingMessages }: IChatsProp
           <EllipsisVerticalIcon />
         </div>
       </div>
-      <input
-        type='text'
-        placeholder='Поиск'
-        className='border border-slate-200 rounded-md px-3 py-1 focus:outline-green-200 text-sm h-9 w-full'
-      />
-      {isPending ? (
+      <Input type='text' placeholder='Поиск' />
+      {!isSuccess ? (
         <div className=''>Загрузка...</div>
       ) : (
         <div className='divide-y'>

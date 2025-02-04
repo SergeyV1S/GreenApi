@@ -16,6 +16,7 @@ import { PATHS } from "@shared/constants";
 import { useGetInstanceData } from "@shared/hooks";
 import { cn } from "@shared/lib";
 import { EMessageStatus } from "@shared/types";
+import { Input } from "@shared/ui";
 
 import { useSendMessage } from "../model";
 
@@ -54,7 +55,7 @@ export const CurrentChatPage = () => {
   return (
     <div className='size-full'>
       <div className='flex flex-col h-full bg-[#efeae2] transition-all duration-300 2xl:rounded-r-2xl'>
-        {postGetChatHistoryMutation.isPending ? (
+        {!postGetChatHistoryMutation.isSuccess ? (
           <div className=''>Загрузка...</div>
         ) : (
           <>
@@ -107,14 +108,14 @@ export const CurrentChatPage = () => {
 
             <div className='flex items-center gap-5 bg-slate-200 px-5 py-1 2xl:rounded-br-2xl'>
               <PlusIcon />
-              <input
+              <Input
                 type='text'
                 value={textMessage}
                 onChange={onChangeInput}
                 placeholder='Введите текст сообщения'
-                className='border border-slate-200 rounded-xl px-3 py-1 focus:outline-green-200 text-sm h-12 w-full'
+                className='h-12'
               />
-              <button onClick={() => sendMessage(chatId!)}>
+              <button disabled={!textMessage} onClick={() => sendMessage(chatId!)}>
                 <SendIcon />
               </button>
               <MicIcon />
