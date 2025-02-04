@@ -4,7 +4,7 @@ type TRequestConfig<Params = undefined> = Params extends undefined
   : { params: Params; config?: import("axios").AxiosRequestConfig };
 
 interface IMutationSettings<Params = void, Func = unknown> {
-  config?: import("axios").AxiosRequestConfig;
+  config?: import("axios").AxiosRequestConfig & { params?: Params };
   options?: import("@tanstack/react-query").UseMutationOptions<
     Awaited<ReturnType<Func>>,
     any,

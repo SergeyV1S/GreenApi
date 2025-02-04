@@ -1,10 +1,12 @@
 import { Controller } from "react-hook-form";
 import { PatternFormat } from "react-number-format";
 
+import { FormError, Input } from "@shared/ui";
+
 import { useAddChat } from "../model";
 
 export const AddChatForm = () => {
-  const { addChatForm, addChat, isValid } = useAddChat();
+  const { addChatForm, addChat, isValid, isLoading } = useAddChat();
 
   return (
     <div className='bg-white p-10 rounded-2xl h-auto space-y-6'>
@@ -33,16 +35,19 @@ export const AddChatForm = () => {
                 />
               )}
             />
-            <p className='text-xs text-red-600 font-medium'>
-              {addChatForm.formState.errors.phone?.message}
-            </p>
+            <FormError>{addChatForm.formState.errors.phone?.message}</FormError>
+          </label>
+          <label htmlFor='idInstance' className='space-y-2'>
+            Сообщение*
+            <Input placeholder='Введите текстовое сообщение' {...addChatForm.register("message")} />
+            <FormError>{addChatForm.formState.errors.message?.message}</FormError>
           </label>
         </div>
         <button
           disabled={isValid}
           className='w-full mt-10 bg-green-600 hover:bg-green-700 text-white py-2 rounded-md disabled:opacity-60'
         >
-          {/* {isLoading ? "Загрузка..." : "Войти"} */}g
+          {isLoading ? "Загрузка..." : "Войти"}
         </button>
       </form>
     </div>
