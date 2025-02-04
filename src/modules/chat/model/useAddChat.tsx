@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 
 import { useCheckWhatsAppMutation, useSendMessageMutation } from "@shared/api/hooks";
-import { LOCAL_STORAGE } from "@shared/constants";
+import { useGetInstanceData } from "@shared/hooks";
 import { formatePhone } from "@shared/lib";
 
 export const useAddChat = () => {
-  const apiTokenInstance = localStorage.getItem(LOCAL_STORAGE.API_TOKEN_INSTANCE) as string;
-  const idInstance = localStorage.getItem(LOCAL_STORAGE.ID_INSTANCE) as string;
+  const { apiTokenInstance, idInstance } = useGetInstanceData();
 
   const checkWhatsAppMutation = useCheckWhatsAppMutation();
   const sendMessageMutation = useSendMessageMutation();
