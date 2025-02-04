@@ -27,14 +27,24 @@ export const CurrentChatPage = () => {
   const postGetChatHistoryMutation = usePostGetChatHistoryMutation();
 
   useEffect(() => {
-    postGetChatHistoryMutation.mutate({
-      apiTokenInstance,
-      idInstance,
-      data: {
-        chatId: chatId!,
-        count: 30
-      }
-    });
+    if (!chatId) return;
+
+    const fetchChatHistory = () => {
+      postGetChatHistoryMutation.mutate({
+        apiTokenInstance,
+        idInstance,
+        data: {
+          chatId,
+          count: 10
+        }
+      });
+    };
+
+    fetchChatHistory();
+
+    const intervalId = setInterval(fetchChatHistory, 300000);
+
+    return () => clearInterval(intervalId);
   }, [chatId]);
 
   return (

@@ -28,20 +28,18 @@ export const Chats = ({ lastIncomingMessages, lastOutgoingMessages }: IChatsProp
   const { isModalOpen, openModal } = useModal();
 
   useEffect(() => {
+    if (chats.length === 0) return;
+
     const fetchContacts = async () => {
-      await Promise.all(
-        chats.map((chatId) =>
-          mutateAsync({
-            apiTokenInstance,
-            data: { chatId },
-            idInstance
-          })
-        )
-      );
+      mutateAsync({
+        apiTokenInstance,
+        data: { chatId: chats[0] },
+        idInstance
+      });
     };
 
     fetchContacts();
-  }, [chats]);
+  }, []);
 
   return (
     <div className='h-full bg-white p-5 space-y-6'>

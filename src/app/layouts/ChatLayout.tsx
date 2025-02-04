@@ -12,10 +12,12 @@ export const ChatLayout = () => {
   const { apiTokenInstance, idInstance } = useGetInstanceData();
 
   const lastIncomingMessagesQuery = useGetLastIncomingMessagesQuery({
-    config: { params: { idInstance, apiTokenInstance } }
+    config: { params: { idInstance, apiTokenInstance } },
+    options: { refetchInterval: 15000 }
   });
   const lastOutgoingMessagesQuery = useGetLastOutgoingMessagesQuery({
-    config: { params: { idInstance, apiTokenInstance } }
+    config: { params: { idInstance, apiTokenInstance } },
+    options: { refetchInterval: 15000 }
   });
 
   return (

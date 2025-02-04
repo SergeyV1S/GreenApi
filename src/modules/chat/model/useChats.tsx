@@ -13,7 +13,7 @@ export const useChats = (
       onSuccess(data) {
         setChatsList((prev) => [...prev, data.data]);
       },
-      retryDelay: 150000
+      retryDelay: 300000
     }
   });
 
