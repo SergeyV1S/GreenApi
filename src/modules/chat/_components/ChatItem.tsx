@@ -2,12 +2,9 @@ import { UserRoundIcon } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 import { cn } from "@shared/lib";
+import type { ITextMessage } from "@shared/types";
 
-interface IChatItemProps {
-  chatId: string;
-}
-
-export const ChatItem = ({ chatId }: IChatItemProps) => (
+export const ChatItem = ({ chatId, senderContactName, textMessage }: ITextMessage) => (
   <NavLink
     to={chatId}
     className={({ isActive }) =>
@@ -19,10 +16,8 @@ export const ChatItem = ({ chatId }: IChatItemProps) => (
         <UserRoundIcon size={49} className='text-white p-1' />
       </div>
       <div className='space-y-1.5'>
-        <p>Руслан</p>
-        <p className='truncate text-xs w-2/3'>
-          Привет, я хотел уточнить, идешь ли ты завтра в кафе?
-        </p>
+        <p>{senderContactName || "Чат"}</p>
+        <p className='truncate text-xs w-full'>{textMessage || "Сообщение"}</p>
       </div>
     </div>
     <p className='absolute top-4 right-4 text-xs opacity-70'>19:34</p>

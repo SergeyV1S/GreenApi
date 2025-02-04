@@ -1,12 +1,17 @@
 import { EllipsisVerticalIcon, MessageSquarePlusIcon } from "lucide-react";
 
 import { useModal } from "@shared/context";
+import type { ITextMessage } from "@shared/types";
 import { Modal } from "@shared/ui";
 
 import { AddChatForm } from "./AddChatForm";
 import { ChatItem } from "./ChatItem";
 
-export const Chats = () => {
+interface IChatsProps {
+  chats: ITextMessage[];
+}
+
+export const Chats = ({ chats }: IChatsProps) => {
   const { isModalOpen, openModal } = useModal();
 
   return (
@@ -26,9 +31,9 @@ export const Chats = () => {
         className='border border-slate-200 rounded-md px-3 py-1 focus:outline-green-200 text-sm h-9 w-full'
       />
       <div className='divide-y'>
-        <ChatItem chatId='1' />
-        <ChatItem chatId='2' />
-        <ChatItem chatId='3' />
+        {chats.map((chat) => (
+          <ChatItem key={chat.idMessage} {...chat} />
+        ))}
       </div>
       {isModalOpen && (
         <Modal>

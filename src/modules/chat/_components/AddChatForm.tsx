@@ -37,6 +37,17 @@ export const AddChatForm = () => {
               {addChatForm.formState.errors.phone?.message}
             </p>
           </label>
+          <label htmlFor='idInstance' className='space-y-2'>
+            Сообщение*
+            <input
+              placeholder='Введите текстовое сообщение'
+              className='border border-slate-200 rounded-md px-3 py-1 focus:outline-green-200 text-sm h-9 w-full'
+              {...addChatForm.register("message")}
+            />
+            <p className='text-xs text-red-600 font-medium'>
+              {addChatForm.formState.errors.message?.message}
+            </p>
+          </label>
         </div>
         <button
           disabled={isValid}

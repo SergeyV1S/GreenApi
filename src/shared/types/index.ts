@@ -15,13 +15,6 @@ export interface ISender {
   senderContactName: string;
 }
 
-export interface ITextMessage {
-  typeMessage: string;
-  textMessageData: {
-    textMessage: string;
-  };
-}
-
 export interface IIncomingMessageReceived {
   typeWebhook: string;
   instanceData: {
@@ -33,4 +26,27 @@ export interface IIncomingMessageReceived {
   idMessage: string;
   senderData: ISender;
   messageData: ITextMessage;
+}
+
+export enum EMessageType {
+  imageMessage,
+  textMessage,
+  reactionMessage,
+  locationMessage,
+  contactMessage,
+  extendedTextMessage,
+  pollMessage,
+  pollUpdateMessage,
+  quotedMessage
+}
+
+export interface IBaseMassage extends ISender {
+  type: string;
+  idMessage: string;
+  timestamp: number;
+  typeMessage: EMessageType;
+}
+
+export interface ITextMessage extends IBaseMassage {
+  textMessage: "Привет";
 }

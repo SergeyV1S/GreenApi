@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { useCheckWhatsAppMutation } from "@shared/api/hooks";
+import { useCheckWhatsAppMutation, useSendMessageMutation } from "@shared/api/hooks";
 import { LOCAL_STORAGE } from "@shared/constants";
 import { formatePhone } from "@shared/lib";
 
@@ -9,16 +9,19 @@ export const useAddChat = () => {
   const idInstance = localStorage.getItem(LOCAL_STORAGE.ID_INSTANCE) as string;
 
   const checkWhatsAppMutation = useCheckWhatsAppMutation();
-  const addChatForm = useForm<{ phone: string }>({
+  const sendMessageMutation = useSendMessageMutation();
+
+  const addChatForm = useForm<{ phone: string; message: string }>({
     defaultValues: {
-      phone: ""
+      phone: "",
+      message: ""
     }
   });
 
   const isValid = !addChatForm.formState.dirtyFields.phone;
   const isLoading = checkWhatsAppMutation.isPending;
 
-  const addChat = async (data: { phone: string }) => {
+  const addChat = async (data: { phone: string; message: string }) => {
     const formatedPhone = formatePhone(data.phone);
     if (formatedPhone.length < 11) {
       addChatForm.setError("phone", {
@@ -35,8 +38,17 @@ export const useAddChat = () => {
         phoneNumber: formatedPhone
       },
       {
-        onSuccess: (responseData) => {
-          console.log(responseData.data);
+        onSuccess: async (responseData) => {
+          if (responseData.data.existsWhatsapp) {
+            await sendMessageMutation.mutateAsync({
+              apiTokenInstance,
+              idInstance,
+              messageData: {
+                chatId: `${formatedPhone}@c.us`,
+                message: data.message
+              }
+            });
+          }
         }
       }
     );
