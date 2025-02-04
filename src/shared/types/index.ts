@@ -40,8 +40,13 @@ export enum EMessageType {
   quotedMessage
 }
 
+export enum EMessageStatus {
+  INCOMING = "incoming",
+  OUTGOING = "outgoing"
+}
+
 export interface IBaseMassage extends ISender {
-  type: string;
+  type: EMessageStatus;
   idMessage: string;
   timestamp: number;
   typeMessage: EMessageType;
@@ -49,4 +54,21 @@ export interface IBaseMassage extends ISender {
 
 export interface ITextMessage extends IBaseMassage {
   textMessage: "Привет";
+}
+
+export interface IContactInfo {
+  avatar: string;
+  name: string;
+  contactName: string;
+  email: string;
+  category: string;
+  description: string;
+  products: [];
+  chatId: string;
+  lastSeen: string | null;
+  isArchive: boolean;
+  isDisappearing: boolean;
+  isMute: boolean;
+  muteExpiration: number | null;
+  isBusiness: boolean;
 }

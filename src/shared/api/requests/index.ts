@@ -5,3 +5,4 @@ export * from "./postSendMassage";
 export * from "./getLastIncomingMessages";
 export * from "./getLastOutgoingMessages";
 export * from "./getChatHistory";
+export * from "./getContactInfo";

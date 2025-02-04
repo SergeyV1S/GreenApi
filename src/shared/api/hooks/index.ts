@@ -3,3 +3,4 @@ export * from "./useSendMessageMutation";
 export * from "./useGetLastIncomingMessagesQuery";
 export * from "./useGetLastOutgoingMessagesQuery";
 export * from "./usePostGetChatHistoryMutation";
+export * from "./usePostGetContactInfoMutation";

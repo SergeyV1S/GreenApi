@@ -42,18 +42,8 @@ export const ChatLayout = () => {
           lastIncomingMessagesQuery.data &&
           lastOutgoingMessagesQuery.data && (
             <Chats
-              chats={[
-                ...new Map(
-                  [
-                    ...new Map(
-                      lastIncomingMessagesQuery.data.data.map((item) => [item.chatId, item])
-                    ).values(),
-                    ...new Map(
-                      lastOutgoingMessagesQuery.data.data.map((item) => [item.chatId, item])
-                    ).values()
-                  ].map((item) => [item.chatId, item])
-                ).values()
-              ]}
+              lastIncomingMessages={lastIncomingMessagesQuery.data.data}
+              lastOutgoingMessages={lastOutgoingMessagesQuery.data.data}
             />
           )
         )}
