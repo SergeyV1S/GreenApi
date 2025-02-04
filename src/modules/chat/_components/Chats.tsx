@@ -20,7 +20,7 @@ interface IChatsProps {
 export const Chats = ({ lastIncomingMessages, lastOutgoingMessages }: IChatsProps) => {
   const { apiTokenInstance, idInstance } = useGetInstanceData();
 
-  const { chats, lastMessageInChats, mutateAsync, chatsList, isPending } = useChats(
+  const { chats, lastMessageInChats, mutateAsync, setChatsList, chatsList, isPending } = useChats(
     lastIncomingMessages,
     lastOutgoingMessages
   );
@@ -31,14 +31,21 @@ export const Chats = ({ lastIncomingMessages, lastOutgoingMessages }: IChatsProp
     if (chats.length === 0) return;
 
     const fetchContacts = async () => {
-      mutateAsync({
-        apiTokenInstance,
-        data: { chatId: chats[0] },
-        idInstance
-      });
+      setChatsList([]);
+      chats.map((chat) =>
+        mutateAsync({
+          apiTokenInstance,
+          data: { chatId: chat },
+          idInstance
+        })
+      );
     };
 
     fetchContacts();
+
+    const intervalId = setInterval(fetchContacts, 15000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
   return (

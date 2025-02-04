@@ -8,12 +8,12 @@ export const useChats = (
   lastOutgoingMessages: ITextMessage[]
 ) => {
   const [chatsList, setChatsList] = useState<IContactInfo[]>([]);
+
   const { mutateAsync, isPending } = usePostGetContactInfoMutation({
     options: {
       onSuccess(data) {
         setChatsList((prev) => [...prev, data.data]);
-      },
-      retryDelay: 300000
+      }
     }
   });
 
@@ -34,5 +34,12 @@ export const useChats = (
       return acc;
     }, {});
 
-  return { lastMessageInChats, chats, chatsList, mutateAsync, isPending };
+  return {
+    lastMessageInChats,
+    chats,
+    chatsList,
+    mutateAsync,
+    setChatsList,
+    isPending
+  };
 };

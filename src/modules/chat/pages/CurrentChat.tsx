@@ -3,6 +3,7 @@ import {
   MicIcon,
   PlusIcon,
   SearchIcon,
+  SendIcon,
   UserRoundIcon,
   VideoIcon
 } from "lucide-react";
@@ -16,8 +17,11 @@ import { useGetInstanceData } from "@shared/hooks";
 import { cn } from "@shared/lib";
 import { EMessageStatus } from "@shared/types";
 
+import { useSendMessage } from "../model";
+
 export const CurrentChatPage = () => {
   const { apiTokenInstance, idInstance } = useGetInstanceData();
+  const { onChangeInput, textMessage, sendMessage } = useSendMessage();
   const { chatId } = useParams();
   const params = new URLSearchParams(useLocation().search);
 
@@ -42,7 +46,7 @@ export const CurrentChatPage = () => {
 
     fetchChatHistory();
 
-    const intervalId = setInterval(fetchChatHistory, 300000);
+    const intervalId = setInterval(fetchChatHistory, 15000);
 
     return () => clearInterval(intervalId);
   }, [chatId]);
@@ -63,8 +67,10 @@ export const CurrentChatPage = () => {
                   <p>{name}</p>
                   <p className='text-xs'>
                     был(-а) сегодня в{" "}
-                    {`${new Date(lastSeen || 0).getHours()}:
-                    ${new Date(lastSeen || 0).getMinutes()}`}
+                    {lastSeen
+                      ? `${new Date(lastSeen || 0).getHours()}:
+                    ${new Date(lastSeen || 0).getMinutes()}`
+                      : "Недавно"}
                   </p>
                 </div>
               </div>
@@ -75,7 +81,7 @@ export const CurrentChatPage = () => {
               </div>
             </header>
             <main className="flex-1 h-full bg-[url('/img/chat-bg.png')]">
-              <div className='py-5 px-14 h-full flex flex-col gap-5 overflow-y-auto'>
+              <div className='py-5 px-14 h-full flex flex-col justify-end gap-5 overflow-y-auto'>
                 {postGetChatHistoryMutation.data?.data.reverse().map((message) => (
                   <div
                     key={message.idMessage}
@@ -103,9 +109,14 @@ export const CurrentChatPage = () => {
               <PlusIcon />
               <input
                 type='text'
+                value={textMessage}
+                onChange={onChangeInput}
                 placeholder='Введите текст сообщения'
                 className='border border-slate-200 rounded-xl px-3 py-1 focus:outline-green-200 text-sm h-12 w-full'
               />
+              <button onClick={() => sendMessage(chatId!)}>
+                <SendIcon />
+              </button>
               <MicIcon />
             </div>
           </>
